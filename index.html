@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prince Folder V8</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header class="hero">
+
+            <div class="crown">♛</div>
+
+            <h1>PRINCE FOLDER</h1>
+
+            <div class="version">VERSION 8</div>
+
+            <div class="line"></div>
+
+            <p class="subtitle">
+                Rejoins le folder
+            </p>
+
+        </header>
+
+
+        <main class="card">
+
+            <h2>PRINCE FOLDER V8</h2>
+
+            <p class="description">
+                Entre tes informations pour rejoindre le folder.
+            </p>
+
+
+            <form id="contactForm">
+
+                <label for="nickname">
+                    Surnom
+                </label>
+
+                <input
+                    type="text"
+                    id="nickname"
+                    placeholder="Ton surnom"
+                    maxlength="30"
+                    required
+                >
+
+
+                <label for="phone">
+                    Numéro de téléphone
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="+509..."
+                    maxlength="20"
+                    required
+                >
+
+
+                <label for="gender">
+                    Sexe
+                </label>
+
+                <select id="gender" required>
+
+                    <option value="">
+                        Sélectionner
+                    </option>
+
+                    <option value="garcon">
+                        Garçon
+                    </option>
+
+                    <option value="fille">
+                        Fille
+                    </option>
+
+                </select>
+
+
+                <label for="country">
+                    Pays
+                </label>
+
+                <input
+                    type="text"
+                    id="country"
+                    placeholder="Haïti"
+                    required
+                >
+
+
+                <button type="submit" id="submitButton">
+                    REJOINDRE LE FOLDER
+                </button>
+
+            </form>
+
+
+            <div id="message" class="message"></div>
+
+        </main>
+
+
+        <footer>
+
+            <div>
+                Version 8
+            </div>
+
+            <p>
+                Version 8 by
+                ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️
+            </p>
+
+            <p>
+                and
+            </p>
+
+            <p>
+                ✞𝆺꯭𝅥ѕυρєяѕт𝆺꯭𝅥𝐋Hє𝐍ѕ 𝐘𝐁𝐍🥷•°
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
