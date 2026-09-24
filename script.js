@@ -1,88 +1,94 @@
-const SUPABASE_URL = "https://zcknlekzoknadnmaskfd.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_KvroMnSX8ZgJB1Zrzg7a1g_t4yIkscV";
+const SUPABASE_URL =
+    "https://zcknlekzoknadnmaskfd.supabase.co";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+const SUPABASE_ANON_KEY =
+    "sb_publishable_KvroMnSX8ZgJB1Zrzg7a1g_t4yIkscV";
 
 
-const form = document.getElementById("contactForm");
-
-const message = document.getElementById("message");
-
-const button = document.getElementById("submitButton");
-
-
-form.addEventListener("submit", async function (event) {
-
-    event.preventDefault();
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
 
 
-    const nickname =
-        document.getElementById("nickname").value.trim();
-
-    const phone =
-        document.getElementById("phone").value.trim();
-
-    const gender =
-        document.getElementById("gender").value;
-
-    const country =
-        document.getElementById("country").value.trim();
+const form =
+    document.getElementById(
+        "contactForm"
+    );
 
 
-    if (!nickname || !phone || !gender || !country) {
-
-        showMessage(
-            "Veuillez remplir tous les champs.",
-            "error"
-        );
-
-        return;
-    }
+const message =
+    document.getElementById(
+        "message"
+    );
 
 
-    button.disabled = true;
-
-    button.textContent = "ENREGISTREMENT...";
-
-
-    let contactName;
+const button =
+    document.getElementById(
+        "submitButton"
+    );
 
 
-    if (gender === "garcon") {
+form.addEventListener(
+    "submit",
+    async function (event) {
 
-        contactName = `🚀🪫${nickname}V8`;
-
-    } else {
-
-        contactName = `🌸${nickname}🌸V8`;
-
-    }
+        event.preventDefault();
 
 
-    try {
-
-        const { error } = await supabaseClient
-            .from("contacts")
-            .insert([
-                {
-                    nickname: nickname,
-                    phone: phone,
-                    gender: gender,
-                    country: country,
-                    contact_name: contactName
-                }
-            ]);
+        const nickname =
+            document
+                .getElementById("nickname")
+                .value
+                .trim();
 
 
-        if (error) {
+        const localPhone =
+            document
+                .getElementById("phone")
+                .value
+                .replace(/\D/g, "");
 
-            console.error(error);
+
+        const gender =
+            document
+                .getElementById("gender")
+                .value;
+
+
+        const countrySelect =
+            document.getElementById(
+                "country"
+            );
+
+
+        const countryCode =
+            countrySelect.value;
+
+
+        const selectedCountry =
+            countrySelect.options[
+                countrySelect.selectedIndex
+            ];
+
+
+        const countryName =
+            selectedCountry
+                .dataset
+                .country;
+
+
+        if (
+            !nickname ||
+            !localPhone ||
+            !gender ||
+            !countryCode ||
+            !countryName
+        ) {
 
             showMessage(
-                "Une erreur est survenue. Veuillez réessayer.",
+                "Veuillez remplir tous les champs.",
                 "error"
             );
 
@@ -90,39 +96,134 @@ form.addEventListener("submit", async function (event) {
         }
 
 
-        showMessage(
-            `Votre numéro a bien été enregistré par ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️ 𝑮𝑿𝑭⁰¹🌸`,
-            "success"
-        );
+        button.disabled = true;
+
+        button.textContent =
+            "ENREGISTREMENT...";
 
 
-        form.reset();
+        /*
+         * Ajout automatique
+         * de l'indicatif
+         */
+
+        const phone =
+            "+" +
+            countryCode +
+            localPhone;
 
 
-    } catch (error) {
+        /*
+         * Nom automatique
+         */
 
-        console.error(error);
+        let contactName;
 
-        showMessage(
-            "Impossible de contacter le serveur.",
-            "error"
-        );
 
-    } finally {
+        if (gender === "garcon") {
 
-        button.disabled = false;
+            contactName =
+                `🚀🪫${nickname}V8`;
 
-        button.textContent = "REJOINDRE LE FOLDER";
+        } else {
+
+            contactName =
+                `🌸${nickname}🌸V8`;
+
+        }
+
+
+        try {
+
+            const {
+                error
+            } = await supabaseClient
+
+                .from("contacts")
+
+                .insert([
+                    {
+                        nickname:
+                            nickname,
+
+                        phone:
+                            phone,
+
+                        gender:
+                            gender,
+
+                        country:
+                            countryName,
+
+                        contact_name:
+                            contactName
+                    }
+                ]);
+
+
+            if (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Une erreur est survenue. Veuillez réessayer.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            showMessage(
+                "Votre numéro a bien été enregistré par ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️ 𝑮𝑿𝑭⁰¹🌸",
+                "success"
+            );
+
+
+            form.reset();
+
+
+            document
+                .querySelectorAll(
+                    'input[name="genderChoice"]'
+                )
+                .forEach(
+                    input =>
+                        input.checked = false
+                );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Impossible de contacter le serveur.",
+                "error"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "REJOINDRE LE FOLDER";
+
+        }
 
     }
+);
 
-});
 
+function showMessage(
+    text,
+    type
+) {
 
-function showMessage(text, type) {
+    message.textContent =
+        text;
 
-    message.textContent = text;
+    message.className =
+        `message ${type}`;
 
-    message.className = `message ${type}`;
-
-          }
+}
