@@ -163,14 +163,14 @@ form.addEventListener(
 
             if (error) {
 
-                console.error(error);
+    console.error("ERREUR SUPABASE :", error);
 
-                showMessage(
-                    "Une erreur est survenue. Veuillez réessayer.",
-                    "error"
-                );
+    showMessage(
+        "ERREUR : " + error.message,
+        "error"
+    );
 
-                return;
+    return;
             }
 
 
