@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Prince Folder V8 - Admin
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        .admin-list {
+
+            margin-top: 20px;
+
+        }
+
+
+        .contact-item {
+
+            padding: 16px;
+
+            margin-bottom: 10px;
+
+            background:
+                rgba(0,0,0,.45);
+
+            border:
+                1px solid #252525;
+
+            border-radius: 13px;
+
+        }
+
+
+        .contact-name {
+
+            color:
+                #e7bd55;
+
+            font-weight:
+                bold;
+
+            margin-bottom:
+                7px;
+
+        }
+
+
+        .contact-phone {
+
+            color:
+                #ddd;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                5px;
+
+        }
+
+
+        .contact-info {
+
+            color:
+                #666;
+
+            font-size:
+                11px;
+
+        }
+
+
+        .admin-button {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            margin-bottom: 10px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        .download {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8d681e,
+                    #e6be58,
+                    #a47721
+                );
+
+            color: #050505;
+
+        }
+
+
+        .logout {
+
+            background: #111;
+
+            color:
+                #d7ad4a;
+
+            border:
+                1px solid
+                #604a20;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="background-glow"></div>
+
+
+<main class="container">
+
+
+    <section class="brand">
+
+        <div class="crown">
+            ♛
+        </div>
+
+        <h1>
+            PRINCE
+        </h1>
+
+        <div class="folder">
+            FOLDER <span>V8</span>
+        </div>
+
+        <div class="gold-line"></div>
+
+    </section>
+
+
+
+    <!-- LOGIN -->
+
+    <section
+        class="form-card"
+        id="loginCard"
+    >
+
+        <div class="card-top">
+
+            <div>
+
+                <p class="small-title">
+                    PRIVATE AREA
+                </p>
+
+                <h2>
+                    Administration
+                </h2>
+
+            </div>
+
+            <div class="v8-badge">
+                V8
+            </div>
+
+        </div>
+
+
+        <form id="loginForm">
+
+
+            <div class="input-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        @
+                    </span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Ton email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <div class="input-box">
+
+                    <span class="input-icon">
+                        ●
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Mot de passe"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="join-button"
+            >
+
+                SE CONNECTER
+
+            </button>
+
+
+        </form>
+
+
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
+
+    </section>
+
+
+
+    <!-- ADMIN -->
+
+    <section
+        class="form-card"
+        id="adminPanel"
+        style="display:none;"
+    >
+
+        <div class="card-top">
+
+            <div>
+
+                <p class="small-title">
+                    PRINCE FOLDER
+                </p>
+
+                <h2>
+                    Contacts
+                </h2>
+
+            </div>
+
+            <div class="v8-badge">
+                V8
+            </div>
+
+        </div>
+
+
+        <p
+            id="contactCount"
+            style="
+                color:#777;
+                font-size:12px;
+                margin-bottom:20px;
+            "
+        >
+            Chargement...
+        </p>
+
+
+        <button
+            id="downloadVCF"
+            class="admin-button download"
+        >
+            TÉLÉCHARGER PRINCE V8.VCF
+        </button>
+
+
+        <button
+            id="logoutButton"
+            class="admin-button logout"
+        >
+            SE DÉCONNECTER
+        </button>
+
+
+        <div
+            id="contactsList"
+            class="admin-list"
+        ></div>
+
+    </section>
+
+
+
+    <footer>
+
+        <div class="footer-version">
+            VERSION 8
+        </div>
+
+        <div>
+            Version 8 by
+        </div>
+
+        <div class="creator">
+            ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️
+        </div>
+
+        <div class="and">
+            and
+        </div>
+
+        <div class="creator">
+            ✞𝆺꯭𝅥ѕυρєяѕт𝆺꯭𝅥𝐋Hє𝐍ѕ 𝐘𝐁𝐍🥷•°
+        </div>
+
+    </footer>
+
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="admin.js"></script>
+
+
+</body>
+</html>
