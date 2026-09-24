@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,65 +12,139 @@
 
 <body>
 
-    <div class="page">
+<div class="background-glow"></div>
 
-        <header class="hero">
+<main class="container">
 
-            <div class="crown">♛</div>
+    <section class="brand">
 
-            <h1>PRINCE FOLDER</h1>
+        <div class="crown">♛</div>
 
-            <div class="version">VERSION 8</div>
+        <h1>PRINCE</h1>
 
-            <div class="line"></div>
+        <div class="folder">
+            FOLDER <span>V8</span>
+        </div>
 
-            <p class="subtitle">
-                Rejoins le folder
-            </p>
+        <div class="gold-line"></div>
 
-        </header>
-
-
-        <main class="card">
-
-            <h2>PRINCE FOLDER V8</h2>
-
-            <p class="description">
-                Entre tes informations pour rejoindre le folder.
-            </p>
+    </section>
 
 
-            <form id="contactForm">
+    <section class="form-card">
+
+        <div class="card-top">
+
+            <div>
+                <p class="small-title">WELCOME TO</p>
+                <h2>Prince Folder</h2>
+            </div>
+
+            <div class="v8-badge">
+                V8
+            </div>
+
+        </div>
+
+
+        <form id="contactForm">
+
+
+            <!-- SURNOM -->
+
+            <div class="input-group">
 
                 <label for="nickname">
                     Surnom
                 </label>
 
-                <input
-                    type="text"
-                    id="nickname"
-                    placeholder="Ton surnom"
-                    maxlength="30"
-                    required
-                >
+                <div class="input-box">
 
+                    <span class="input-icon">✦</span>
+
+                    <input
+                        type="text"
+                        id="nickname"
+                        placeholder="Entre ton surnom"
+                        maxlength="30"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TELEPHONE -->
+
+            <div class="input-group">
 
                 <label for="phone">
                     Numéro de téléphone
                 </label>
 
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="+509..."
-                    maxlength="20"
-                    required
-                >
+                <div class="input-box">
+
+                    <span class="input-icon">☎</span>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Ex. 55094203"
+                        maxlength="15"
+                        autocomplete="tel-national"
+                        required
+                    >
+
+                </div>
+
+            </div>
 
 
-                <label for="gender">
+            <!-- SEXE -->
+
+            <div class="input-group">
+
+                <label>
                     Sexe
                 </label>
+
+                <div class="gender-container">
+
+                    <label class="gender-option">
+
+                        <input
+                            type="radio"
+                            name="genderChoice"
+                            value="garcon"
+                        >
+
+                        <span class="gender-content">
+                            <span class="gender-icon">🚀</span>
+                            <span>Garçon</span>
+                        </span>
+
+                    </label>
+
+
+                    <label class="gender-option">
+
+                        <input
+                            type="radio"
+                            name="genderChoice"
+                            value="fille"
+                        >
+
+                        <span class="gender-content">
+                            <span class="gender-icon">🌸</span>
+                            <span>Fille</span>
+                        </span>
+
+                    </label>
+
+                </div>
+
 
                 <select id="gender" required>
 
@@ -87,57 +162,199 @@
 
                 </select>
 
+            </div>
+
+
+            <!-- PAYS -->
+
+            <div class="input-group">
 
                 <label for="country">
                     Pays
                 </label>
 
-                <input
-                    type="text"
-                    id="country"
-                    placeholder="Haïti"
-                    required
-                >
+                <div class="input-box">
 
+                    <span class="input-icon">⌖</span>
 
-                <button type="submit" id="submitButton">
-                    REJOINDRE LE FOLDER
-                </button>
+                    <select id="country" required>
 
-            </form>
+                        <option value="">
+                            Choisir ton pays
+                        </option>
 
+                        <option value="509" data-country="Haïti">
+                            🇭🇹 Haïti (+509)
+                        </option>
 
-            <div id="message" class="message"></div>
+                        <option value="1" data-country="États-Unis">
+                            🇺🇸 États-Unis (+1)
+                        </option>
 
-        </main>
+                        <option value="1" data-country="Canada">
+                            🇨🇦 Canada (+1)
+                        </option>
 
+                        <option value="33" data-country="France">
+                            🇫🇷 France (+33)
+                        </option>
 
-        <footer>
+                        <option value="34" data-country="Espagne">
+                            🇪🇸 Espagne (+34)
+                        </option>
 
-            <div>
-                Version 8
+                        <option value="39" data-country="Italie">
+                            🇮🇹 Italie (+39)
+                        </option>
+
+                        <option value="44" data-country="Royaume-Uni">
+                            🇬🇧 Royaume-Uni (+44)
+                        </option>
+
+                        <option value="49" data-country="Allemagne">
+                            🇩🇪 Allemagne (+49)
+                        </option>
+
+                        <option value="55" data-country="Brésil">
+                            🇧🇷 Brésil (+55)
+                        </option>
+
+                        <option value="52" data-country="Mexique">
+                            🇲🇽 Mexique (+52)
+                        </option>
+
+                        <option value="27" data-country="Afrique du Sud">
+                            🇿🇦 Afrique du Sud (+27)
+                        </option>
+
+                        <option value="234" data-country="Nigeria">
+                            🇳🇬 Nigeria (+234)
+                        </option>
+
+                        <option value="225" data-country="Côte d'Ivoire">
+                            🇨🇮 Côte d'Ivoire (+225)
+                        </option>
+
+                        <option value="221" data-country="Sénégal">
+                            🇸🇳 Sénégal (+221)
+                        </option>
+
+                    </select>
+
+                </div>
+
             </div>
 
-            <p>
-                Version 8 by
-                ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️
-            </p>
 
-            <p>
-                and
-            </p>
+            <!-- BOUTON -->
 
-            <p>
-                ✞𝆺꯭𝅥ѕυρєяѕт𝆺꯭𝅥𝐋Hє𝐍ѕ 𝐘𝐁𝐍🥷•°
-            </p>
+            <button
+                type="submit"
+                id="submitButton"
+                class="join-button"
+            >
 
-        </footer>
+                <span>
+                    REJOINDRE LE FOLDER
+                </span>
 
-    </div>
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+        </form>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <div class="secure-text">
+            ✦ Enregistrement automatique
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div class="footer-version">
+            VERSION 8
+        </div>
+
+        <div>
+            Version 8 by
+        </div>
+
+        <div class="creator">
+            ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️
+        </div>
+
+        <div class="and">
+            and
+        </div>
+
+        <div class="creator">
+            ✞𝆺꯭𝅥ѕυρєяѕт𝆺꯭𝅥𝐋Hє𝐍ѕ 𝐘𝐁𝐍🥷•°
+        </div>
+
+    </footer>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+
+<script>
+
+const genderButtons =
+    document.querySelectorAll(
+        'input[name="genderChoice"]'
+    );
+
+const genderSelect =
+    document.getElementById("gender");
+
+
+genderButtons.forEach(button => {
+
+    button.addEventListener(
+        "change",
+        () => {
+
+            genderSelect.value =
+                button.value;
+
+        }
+    );
+
+});
+
+
+genderSelect.addEventListener(
+    "change",
+    () => {
+
+        genderButtons.forEach(button => {
+
+            button.checked =
+                button.value ===
+                genderSelect.value;
+
+        });
+
+    }
+);
+
+</script>
 
 </body>
-</html>
+                        </html>
