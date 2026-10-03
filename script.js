@@ -37,6 +37,10 @@ form.addEventListener(
         event.preventDefault();
 
 
+        /* =========================
+           SURNOM
+        ========================= */
+
         const nickname =
             document
                 .getElementById("nickname")
@@ -44,18 +48,19 @@ form.addEventListener(
                 .trim();
 
 
-        const localPhone =
-            document
-                .getElementById("phone")
-                .value
-                .replace(/\D/g, "");
-
+        /* =========================
+           SEXE
+        ========================= */
 
         const gender =
             document
                 .getElementById("gender")
                 .value;
 
+
+        /* =========================
+           PAYS
+        ========================= */
 
         const countrySelect =
             document.getElementById(
@@ -75,9 +80,24 @@ form.addEventListener(
 
         const countryName =
             selectedCountry
-                .dataset
-                .country;
+                ? selectedCountry.dataset.country
+                : "";
 
+
+        /* =========================
+           NUMÉRO
+        ========================= */
+
+        let localPhone =
+            document
+                .getElementById("phone")
+                .value
+                .replace(/\D/g, "");
+
+
+        /* =========================
+           VÉRIFICATION DES CHAMPS
+        ========================= */
 
         if (
             !nickname ||
@@ -96,16 +116,37 @@ form.addEventListener(
         }
 
 
-        button.disabled = true;
+        /* =========================
+           CORRECTION DE L'INDICATIF
+        =========================
 
-        button.textContent =
-            "ENREGISTREMENT...";
+           Exemple :
+
+           Pays : Haïti (+509)
+           Numéro entré :
+           50936557309
+
+           devient :
+
+           36557309
+
+           Puis le site ajoute +509.
+        */
+
+        if (
+            countryCode === "509" &&
+            localPhone.startsWith("509")
+        ) {
+
+            localPhone =
+                localPhone.substring(3);
+
+        }
 
 
-        /*
-         * Ajout automatique
-         * de l'indicatif
-         */
+        /* =========================
+           NUMÉRO INTERNATIONAL FINAL
+        ========================= */
 
         const phone =
             "+" +
@@ -113,14 +154,16 @@ form.addEventListener(
             localPhone;
 
 
-        /*
-         * Nom automatique
-         */
+        /* =========================
+           NOM DU CONTACT
+        ========================= */
 
         let contactName;
 
 
-        if (gender === "garcon") {
+        if (
+            gender === "garcon"
+        ) {
 
             contactName =
                 `🚀🪫${nickname}V8`;
@@ -133,52 +176,103 @@ form.addEventListener(
         }
 
 
+        /* =========================
+           BOUTON
+        ========================= */
+
+        button.disabled = true;
+
+        button.textContent =
+            "ENREGISTREMENT...";
+
+
         try {
+
+            /* =====================
+               INSERTION SUPABASE
+            ===================== */
 
             const {
                 error
-            } = await supabaseClient
+            } =
+                await supabaseClient
+                    .from("contacts")
+                    .insert([
+                        {
+                            nickname:
+                                nickname,
 
-                .from("contacts")
+                            phone:
+                                phone,
 
-                .insert([
-                    {
-                        nickname:
-                            nickname,
+                            gender:
+                                gender,
 
-                        phone:
-                            phone,
+                            country:
+                                countryName,
 
-                        gender:
-                            gender,
+                            contact_name:
+                                contactName
+                        }
+                    ]);
 
-                        country:
-                            countryName,
 
-                        contact_name:
-                            contactName
-                    }
-                ]);
-
+            /* =====================
+               GESTION DES ERREURS
+            ===================== */
 
             if (error) {
 
-    console.error("ERREUR SUPABASE :", error);
+                console.error(
+                    "ERREUR SUPABASE :",
+                    error
+                );
 
-    showMessage(
-        "ERREUR : " + error.message,
-        "error"
-    );
 
-    return;
+                /* =================
+                   NUMÉRO DÉJÀ EXISTANT
+                ================= */
+
+                if (
+                    error.code ===
+                    "23505"
+                ) {
+
+                    showMessage(
+                        "Ce numéro est déjà enregistré dans le Folder.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* =================
+                   AUTRE ERREUR
+                ================= */
+
+                showMessage(
+                    "Une erreur est survenue. Veuillez réessayer.",
+                    "error"
+                );
+
+                return;
             }
 
+
+            /* =========================
+               SUCCÈS
+            ========================= */
 
             showMessage(
                 "Votre numéro a bien été enregistré par ン፝֟☙.✞𝆺꯭𝅥✰🤴🏻𝐏𝐫𝐢𝐧𝐜𝐞🤴🏻⭐️ 𝑮𝑿𝑭⁰¹🌸",
                 "success"
             );
 
+
+            /* =========================
+               RESET DU FORMULAIRE
+            ========================= */
 
             form.reset();
 
@@ -188,23 +282,32 @@ form.addEventListener(
                     'input[name="genderChoice"]'
                 )
                 .forEach(
-                    input =>
-                        input.checked = false
+                    input => {
+                        input.checked =
+                            false;
+                    }
                 );
 
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "ERREUR :",
+                error
+            );
+
 
             showMessage(
                 "Impossible de contacter le serveur.",
                 "error"
             );
 
+
         } finally {
 
-            button.disabled = false;
+            button.disabled =
+                false;
+
 
             button.textContent =
                 "REJOINDRE LE FOLDER";
@@ -215,6 +318,10 @@ form.addEventListener(
 );
 
 
+/* =============================
+   MESSAGE
+============================= */
+
 function showMessage(
     text,
     type
@@ -222,6 +329,7 @@ function showMessage(
 
     message.textContent =
         text;
+
 
     message.className =
         `message ${type}`;
